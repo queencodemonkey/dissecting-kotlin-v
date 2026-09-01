@@ -29,6 +29,7 @@
 package rt
 
 import rt.ex.Clickable
+import rt.ex.Editable
 import rt.ex.UiElement
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
@@ -106,6 +107,16 @@ object Contracts
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /**
  * Smart casts
@@ -117,26 +128,31 @@ fun clickAt(x: Int, y: Int) {
     uiElement.onClick()
   }
 
-  if (uiElement.isClickable()) {
+  if (uiElement.isClickableAndEditable()) {
     uiElement.onClick()
 //    (uiElement as Clickable).onClick()
   }
 }
 
-//fun UiElement?.isClickable(): Boolean = this is Clickable
+/**
+ * Returns `true` if the element is clickable and editable.
+ */
+//fun UiElement?.isClickableAndEditable(): Boolean =
+//  this is Clickable && this is Editable
+
 
 // region // So how can Contracts help?
 
 
 @OptIn(ExperimentalContracts::class)
-fun UiElement?.isClickable(): Boolean {
+fun UiElement?.isClickableAndEditable(): Boolean {
 
   contract {
-    returns(true) implies (this@isClickable is Clickable)
+    returns(true) implies (this@isClickableAndEditable is Clickable)
+    returns(true) implies (this@isClickableAndEditable is Editable)
   }
   return this is Clickable
 }
-
 
 
 // endregion
@@ -167,12 +183,12 @@ fun intialize(json: String) {
   }
 }
 
-
-// region // ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ Here Be Dragons ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ ===
-
 inline fun <R> myRun(block: () -> R): R {
   return block()
 }
+
+
+// region // ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ Here Be Dragons ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ ===
 
 fun parseUiElement(json: String): UiElement? {
   val elements: List<UiElement?> = listOf(

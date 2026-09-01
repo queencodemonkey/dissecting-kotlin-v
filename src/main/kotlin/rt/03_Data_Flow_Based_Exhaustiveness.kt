@@ -29,6 +29,7 @@
 package rt
 
 import rt.ex.CrewMember
+import rt.ex.CrewMember.BridgeDutyStatus
 import rt.ex.CrewMember.HealthStatus
 
 
@@ -126,27 +127,34 @@ object DataFlowBasedExhaustiveness
 //
 //
 
-enum class BridgeDutyStatus {
-  ConfinedToQuarters,
-  FullDuty,
-  LightDuty,
-  MonitoredDuty,
-}
-
 /**
  * Before.
+ *
+ * ```
+ *   enum class HealthStatus {
+ *     Healthy,
+ *     Injured,
+ *     MedicalLeave,
+ *     InRecovery,
+ *     Sick,
+ *   }
+ * ```
  */
 fun fitForBridgeDuty(crewMember: CrewMember): BridgeDutyStatus {
   val healthStatus = crewMember.healthStatus
 
-  if (healthStatus == HealthStatus.Sick || healthStatus == HealthStatus.MedicalLeave) {
+  if (healthStatus == HealthStatus.Sick
+    || healthStatus == HealthStatus.MedicalLeave
+  ) {
     return BridgeDutyStatus.ConfinedToQuarters
-  }
+  } // `healthStatus` != Sick, != MedicalLeave
 
   return when (healthStatus) {
     HealthStatus.Healthy -> BridgeDutyStatus.FullDuty
     HealthStatus.Injured -> BridgeDutyStatus.LightDuty
     HealthStatus.InRecovery -> BridgeDutyStatus.MonitoredDuty
+    // Already known: healthStatus != Sick, != MedicalLeave, != Healthy,
+    //  != Injured, != InRecovery
     else -> BridgeDutyStatus.ConfinedToQuarters
   }
 }
@@ -164,7 +172,9 @@ fun fitForBridgeDuty(crewMember: CrewMember): BridgeDutyStatus {
 fun fitForBridgeDuties(crewMember: CrewMember): BridgeDutyStatus {
   val healthStatus: HealthStatus = crewMember.healthStatus // Assignment.
 
-  if (healthStatus == HealthStatus.Sick || healthStatus == HealthStatus.MedicalLeave) {
+  if (healthStatus == HealthStatus.Sick ||
+    healthStatus == HealthStatus.MedicalLeave
+  ) {
     return BridgeDutyStatus.ConfinedToQuarters
   } // `healthStatus` != Sick, != MedicalLeave
 
@@ -180,6 +190,7 @@ fun fitForBridgeDuties(crewMember: CrewMember): BridgeDutyStatus {
 
 //
 //
-//        (As I understand it), K2 helps make this possible.
+//        K2 makes this possible.
+//        https://github.com/Kotlin/KEEP/blob/main/proposals/KEEP-0442-dfa-exhaustiveness.md#in-k2-terms
 //
 //

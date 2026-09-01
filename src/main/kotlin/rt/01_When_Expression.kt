@@ -203,7 +203,7 @@ object WhenExpression
 
 
 fun isThisAStatement() {
-  val sum = 2 + 2
+  2 + 2
 }
 
 
@@ -306,10 +306,7 @@ fun getSelectedAction(value: SimpleEnum): Action =
 //
 //
 //
-//
-//
-//
-//
+
 /**
  * Simplified `when` grammar .
  *
@@ -365,8 +362,8 @@ fun matchCrewMember(crewMember: CrewMember) {
  * Containment-checking expressions
  * https://kotlinlang.org/spec/expressions.html#containment-checking-expressions
  *
- * `in` operator
- * https://kotlinlang.org/spec/expressions.html#type-checking-expressions
+ * Checks with `in` and `!in` operators
+ * https://kotlinlang.org/docs/keyword-reference.html#hard-keywords
  */
 fun convertLevel(level: Int): PowerLevel =
   when (level) {
@@ -396,7 +393,7 @@ fun toKeyTypeDescription(key: Key) =
     Control.ESC -> "Esc Key"
   }
 
-val letsTakeALook = BytecodeBreak
+
 
 
 
@@ -508,6 +505,9 @@ fun printOnlyA(value: SimpleEnum) {
 }
 
 //
+//
+//
+//
 //    - It has a bound value/subject, and at least one of
 //      the following is true:
 //
@@ -515,7 +515,6 @@ fun printOnlyA(value: SimpleEnum) {
 //        - A constant expression that evaluates to `true`.
 //        - A constant expression that evaluates to `false`.
 //
-
 fun whenThisOrThat(value: Boolean) {
   when (value) {
     true -> println("This")
@@ -524,6 +523,9 @@ fun whenThisOrThat(value: Boolean) {
 }
 
 
+//
+//
+//
 //
 //    - The bound expression is of a sealed class or interface S,
 //      and all of its direct non-sealed subtypes T1, …, Tn
@@ -564,6 +566,9 @@ enum class E : S {
 }
 
 //
+//
+//
+//
 //    For a direct non-sealed subtype Ti:
 //
 //    - There is a type check on Sj <: S (Sj is a subtype of S),
@@ -585,7 +590,8 @@ fun verifySealedHierarchy(value: S) {
   }
 }
 
-
+//
+//
 //
 //
 //    - The bound expression is an `enum class`, and that enum
@@ -601,6 +607,8 @@ fun isItA(value: SimpleEnum) {
 
 //
 //
+//
+//
 //    - The bound expression is of a nullable type T?:
 //      - One of the cases above is met for its nun-nullable
 //        counterpart, T.
@@ -608,7 +616,6 @@ fun isItA(value: SimpleEnum) {
 //        value for equality with null.
 //
 //
-
 fun verifyNullable(value: S?) {
   when (value) {
     is S -> println("Is a S")
