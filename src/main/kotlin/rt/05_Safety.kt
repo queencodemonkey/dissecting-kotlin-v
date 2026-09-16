@@ -28,51 +28,53 @@
 
 package rt
 
-import java.net.URI
-
-/**
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *          ███████╗ █████╗ ███████╗███████╗████████╗██╗   ██╗
- *          ██╔════╝██╔══██╗██╔════╝██╔════╝╚══██╔══╝╚██╗ ██╔╝
- *          ███████╗███████║█████╗  █████╗     ██║    ╚████╔╝
- *          ╚════██║██╔══██║██╔══╝  ██╔══╝     ██║     ╚██╔╝
- *          ███████║██║  ██║██║     ███████╗   ██║      ██║
- *          ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝   ╚═╝      ╚═╝
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- */
 object Safety
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//            ███████╗ █████╗ ███████╗███████╗████████╗██╗   ██╗
+//            ██╔════╝██╔══██╗██╔════╝██╔════╝╚══██╔══╝╚██╗ ██╔╝
+//            ███████╗███████║█████╗  █████╗     ██║    ╚████╔╝
+//            ╚════██║██╔══██║██╔══╝  ██╔══╝     ██║     ╚██╔╝
+//            ███████║██║  ██║██║     ███████╗   ██║      ██║
+//            ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝   ╚═╝      ╚═╝
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 //
 //
@@ -114,8 +116,6 @@ object Safety
 //
 //
 //
-
-
 
 
 //
@@ -209,10 +209,6 @@ data class SimpleScreen(
 //
 //
 //
-//
-//
-//
-//
 //        Possible combinations of null and non-null
 //        values inside of a `SimpleScreen`.
 //
@@ -237,91 +233,6 @@ data class SimpleScreen(
 //
 //
 //
-
-
-/**
- * A maybe not simple enough screen.
- */
-data class NotSimpleScreen(
-  val width: Int?,
-  val height: Int?,
-  val content: Content,
-  val backgroundImage: URI?,
-  val backgroundColor: UInt? = null,
-  val isLoading: Boolean,
-  val errorState: ErrorState? = null
-)
-
-/**
- * Render that not-simple-enough screen.
- */
-fun NotSimpleScreen.render() {
-  if (width == null && height == null) {
-    // Log.d("Screen dimensions should not be both null.")
-    return
-  }
-
-  if (isLoading) {
-    // Show loading spinner.
-  }
-
-  // Render background.
-  when {
-    backgroundImage != null -> {
-      // Render background image.
-    }
-
-    backgroundColor != null -> {
-      // Fill with background color.
-    }
-    //
-    // Is there a meaning to backgroundImage != null && backgroundColor != null
-    //
-    else -> {
-      // Decide on some fallback color and render it.
-    }
-  }
-
-  // Render any errors.
-  errorState?.render()
-
-  // Render content.
-  content.render()
-}
-
-/**
- * More-code-but-less-invalid-states.
- */
-sealed interface Screen {
-  val width: Int   // Either fail earlier or provided appropriate default.
-  val height: Int  // Either fail earlier or provided appropriate default.
-  val background: Background? // Intentionally nullable.
-
-  sealed interface Background {
-    data class Image(val uri: URI)
-    data class Color(val color: UInt)
-  }
-}
-
-data class LoadingScreen(
-  override val width: Int,
-  override val height: Int,
-  override val background: Screen.Background?,
-) : Screen
-
-data class ErrorScreen(
-  override val width: Int,
-  override val height: Int,
-  override val background: Screen.Background?,
-  val errorState: ErrorState,
-) : Screen
-
-data class ContentScreen(
-  override val width: Int,
-  override val height: Int,
-  override val background: Screen.Background?,
-  val content: Content,
-) : Screen
 
 // region // ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ Here Be Dragons ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ ===
 

@@ -32,52 +32,6 @@ import rt.ex.AwayMission
 import rt.ex.Color
 import rt.ex.CrewMember
 import rt.ex.CrewMember.Division.*
-import rt.ex.CrewMember.HealthStatus.Injured
-
-/**
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *        ███████╗███╗   ███╗ █████╗ ██████╗ ████████╗
- *        ██╔════╝████╗ ████║██╔══██╗██╔══██╗╚══██╔══╝
- *        ███████╗██╔████╔██║███████║██████╔╝   ██║
- *        ╚════██║██║╚██╔╝██║██╔══██║██╔══██╗   ██║
- *        ███████║██║ ╚═╝ ██║██║  ██║██║  ██║   ██║
- *        ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝
- *
- *         ██████╗ █████╗ ███████╗████████╗███████╗
- *        ██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔════╝
- *        ██║     ███████║███████╗   ██║   ███████╗
- *        ██║     ██╔══██║╚════██║   ██║   ╚════██║
- *        ╚██████╗██║  ██║███████║   ██║   ███████║
- *         ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝
- *
- *
- *
- *
- *
- *        Documentation:
- *        https://kotlinlang.org/docs/typecasts.html#smart-casts
- *
- *        Kotlin language specification | Type Inference
- *        https://kotlinlang.org/spec/type-inference.html#smart-casts
- *
- *
- *
- *
- *
- *
- *
- */
-
 
 //
 //
@@ -91,8 +45,53 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
-//        Type inference: some type information may be omitted, but the
-//          compiler can infer the type.
+//        ███████╗███╗   ███╗ █████╗ ██████╗ ████████╗
+//        ██╔════╝████╗ ████║██╔══██╗██╔══██╗╚══██╔══╝
+//        ███████╗██╔████╔██║███████║██████╔╝   ██║
+//        ╚════██║██║╚██╔╝██║██╔══██║██╔══██╗   ██║
+//        ███████║██║ ╚═╝ ██║██║  ██║██║  ██║   ██║
+//        ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝
+//
+//         ██████╗ █████╗ ███████╗████████╗███████╗
+//        ██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔════╝
+//        ██║     ███████║███████╗   ██║   ███████╗
+//        ██║     ██╔══██║╚════██║   ██║   ╚════██║
+//        ╚██████╗██║  ██║███████║   ██║   ███████║
+//         ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝
+//
+//
+//
+//
+//
+//        Documentation:
+//        https://kotlinlang.org/docs/typecasts.html#smart-casts
+//
+//        Kotlin language specification | Type Inference
+//        https://kotlinlang.org/spec/type-inference.html#smart-casts
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        Type inference: some type information may be omitted,
+//          but the compiler can infer the type.
 //
 //
 //
@@ -110,6 +109,11 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
+//
+//
+//
+
+
 //
 //
 //
@@ -143,6 +147,21 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
+//
+//
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //        "Kotlin introduces a limited form of flow-sensitive typing
 //         called smart casts. Flow-sensitive typing means some expressions
 //         in the program may introduce changes to the compile-time
@@ -161,7 +180,6 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
-
 //
 //
 //
@@ -203,6 +221,10 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
+//
+//
+//
+//
 //        "Data-flow analysis is a technique for gathering information
 //         about the possible set of values calculated at various
 //         points in a computer program."
@@ -223,8 +245,20 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
+//
+//
+//
+//
 //
 //
 //
@@ -236,8 +270,10 @@ import rt.ex.CrewMember.HealthStatus.Injured
 //
 //
 //
-
-
+//
+//
+//
+//
 fun executeAwayMission(mission: AwayMission) {
 
   var injuredCrewMember: CrewMember? // Declaration/assignment; it's `null`.
@@ -249,14 +285,16 @@ fun executeAwayMission(mission: AwayMission) {
 
       mission.medicalStaff.treat(crewMember)
 
-      if (injuredCrewMember is LineOfficer) {  // Type-check, `injuredCrewMember` is definitely
-                                               //  a CrewMember && LineOfficer
+      if (injuredCrewMember is LineOfficer) {  // Type-check, `injuredCrewMember`
+                                               //  is definitely a CrewMember
+                                               //  && is definitely a LineOfficer.
 
         injuredCrewMember.passOnCommand() // Smart Cast sink: the expression that
-                                          //  leverages the accumulated information
+                                          //  leverages the accumulated information.
       }
       // After this `if`, we drop the `is`.
-      // `injuredCrewMember` is definitely a CrewMember, but drops the extra type information.
+      //  `injuredCrewMember` is definitely a CrewMember,
+      //  but drops the extra type information.
     }
     // After this `if`, we drop the assignment information.
     // It's back to being `null` here.
@@ -269,8 +307,8 @@ fun executeAwayMission(mission: AwayMission) {
                                                         //  a SecurityOfficer; Smart Cast sink.
 
       else -> if (crewMember.uniformColor == Color.Red) { // `crewMember` is definitely a CrewMember,
-        println("Don't die.") }                           //  is definitely not a ScienceOfficer,
-                                                          //  not a SecurityOfficer
+        println("Don't die.") }                           //  !is ScienceOfficer,
+                                                          //  !is SecurityOfficer
     }
   }
 }

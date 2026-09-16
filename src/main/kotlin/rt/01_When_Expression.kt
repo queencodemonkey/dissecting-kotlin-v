@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-@file:Suppress("unused", "SameParameterValue")
+@file:Suppress("unused", "SameParameterValue", "CanSealedSubClassBeObject", "UnusedVariable")
 
 package rt
 
@@ -34,43 +34,53 @@ import rt.ex.CrewMember
 import rt.ex.Voyager
 import rt.ex.allCrewMembers
 
-/**
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *        ██╗    ██╗██╗  ██╗███████╗███╗   ██╗
- *        ██║    ██║██║  ██║██╔════╝████╗  ██║
- *        ██║ █╗ ██║███████║█████╗  ██╔██╗ ██║
- *        ██║███╗██║██╔══██║██╔══╝  ██║╚██╗██║
- *        ╚███╔███╔╝██║  ██║███████╗██║ ╚████║
- *         ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝
- *
- *
- *
- *
- *
- *
- *        Kotlin Language Specification | When Expressions
- *        https://kotlinlang.org/spec/expressions.html#when-expressions
- *
- *
- *
- *
- *
- *
- */
 object WhenExpression
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        ██╗    ██╗██╗  ██╗███████╗███╗   ██╗
+//        ██║    ██║██║  ██║██╔════╝████╗  ██║
+//        ██║ █╗ ██║███████║█████╗  ██╔██╗ ██║
+//        ██║███╗██║██╔══██║██╔══╝  ██║╚██╗██║
+//        ╚███╔███╔╝██║  ██║███████╗██║ ╚████║
+//         ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝
+//
+//
+//
+//
+//
+//
+//        Kotlin Language Specification | When Expressions
+//        https://kotlinlang.org/spec/expressions.html#when-expressions
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 //
 //
@@ -107,7 +117,10 @@ object WhenExpression
 //
 
 
-
+//
+//
+//
+//
 //
 //
 //
@@ -143,8 +156,15 @@ object WhenExpression
 //
 //
 //
+//
+//
+//
+//
 
-
+//
+//
+//
+//
 //
 //
 //
@@ -177,7 +197,20 @@ object WhenExpression
 //
 //
 //
+//
+//
+//
 
+
+fun isThisAStatement() {
+  2 + 2
+}
+
+
+//
+//
+//
+//
 //
 //
 //
@@ -193,7 +226,12 @@ object WhenExpression
 //        "When expression has two different forms:
 //         with bound value and without it."
 //
-//        With Subject / Without Subject
+//         Also can be referred to as
+//         "With Subject" or "Without Subject"
+//
+//
+//
+//
 //
 //
 //
@@ -234,29 +272,45 @@ fun getSelectedAction(value: SimpleEnum): Action =
     SimpleEnum.D -> Action.Walk
   }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        'when' whenSubject? '{' whenEntry+ '}'
+//
+//          whenSubject:
+//            '(' ('val' variableDeclaration '=')? expression ')'
+//
+//          whenEntry:
+//            whenCondition (',' whenCondition)* ','?
+//                '->' controlStructureBody
+//            | 'else' '->' controlStructureBody
+//
+//            whenCondition:
+//              expression
+//              | rangeTest
+//              | typeTest
+//
+//            controlStructureBody:
+//              '{' statements '}'
+//              | statement
+//
+//
+//
+//
+
 /**
- * `when` Grammar (Sort of).
+ * Simplified `when` grammar .
  *
  * https://kotlinlang.org/grammar/#whenExpression
- *
- *    'when' whenSubject? '{' whenEntry+ '}'
- *
- *      whenSubject:
- *        '(' ('val' variableDeclaration '=')? expression ')'
- *
- *      whenEntry:
- *        whenCondition (',' whenCondition)* ','?
- *            '->' controlStructureBody
- *        | 'else' '->' controlStructureBody
- *
- *        whenCondition:
- *          expression
- *          | rangeTest
- *          | typeTest
- *
- *        controlStructureBody:
- *          '{' statements '}'
- *          | statement
  */
 fun executeAction() {
   //
@@ -291,7 +345,7 @@ fun executeAction() {
 }
 
 /**
- * whenCondition*: expression
+ * *whenCondition*: expression
  */
 fun matchCrewMember(crewMember: CrewMember) {
   when (crewMember) {
@@ -308,8 +362,8 @@ fun matchCrewMember(crewMember: CrewMember) {
  * Containment-checking expressions
  * https://kotlinlang.org/spec/expressions.html#containment-checking-expressions
  *
- * `in` operator
- * https://kotlinlang.org/spec/expressions.html#type-checking-expressions
+ * Checks with `in` and `!in` operators
+ * https://kotlinlang.org/docs/keyword-reference.html#hard-keywords
  */
 fun convertLevel(level: Int): PowerLevel =
   when (level) {
@@ -339,7 +393,6 @@ fun toKeyTypeDescription(key: Key) =
     Control.ESC -> "Esc Key"
   }
 
-val letsTakeALook = BytecodeBreak
 
 
 
@@ -350,6 +403,11 @@ val letsTakeALook = BytecodeBreak
 
 
 
+
+//
+//
+//
+//
 //
 //
 //
@@ -374,6 +432,10 @@ val letsTakeALook = BytecodeBreak
 //        ██ ██  ██ █████   ███████ ███████
 //        ██  ██ ██ ██           ██      ██
 //        ██   ████ ███████ ███████ ███████
+//
+//
+//
+//
 //
 //
 //
@@ -435,7 +497,6 @@ val letsTakeALook = BytecodeBreak
 //
 //    - It has an `else` entry
 //
-
 fun printOnlyA(value: SimpleEnum) {
   when (value) {
     SimpleEnum.A -> println("Selected A")
@@ -444,6 +505,9 @@ fun printOnlyA(value: SimpleEnum) {
 }
 
 //
+//
+//
+//
 //    - It has a bound value/subject, and at least one of
 //      the following is true:
 //
@@ -451,7 +515,6 @@ fun printOnlyA(value: SimpleEnum) {
 //        - A constant expression that evaluates to `true`.
 //        - A constant expression that evaluates to `false`.
 //
-
 fun whenThisOrThat(value: Boolean) {
   when (value) {
     true -> println("This")
@@ -460,6 +523,9 @@ fun whenThisOrThat(value: Boolean) {
 }
 
 
+//
+//
+//
 //
 //    - The bound expression is of a sealed class or interface S,
 //      and all of its direct non-sealed subtypes T1, …, Tn
@@ -483,7 +549,6 @@ fun whenThisOrThat(value: Boolean) {
 //                  |     |
 //                  T     T
 //
-
 sealed interface S
 class T1 : S
 sealed interface S1 : S {
@@ -496,11 +561,13 @@ sealed interface S2 : S {
   class T6 : S2
 }
 sealed interface S3
-
 enum class E : S {
   One, Two, Three;
 }
 
+//
+//
+//
 //
 //    For a direct non-sealed subtype Ti:
 //
@@ -514,7 +581,6 @@ enum class E : S {
 //      enum is covered: if all of its values are checked via
 //      constant expressions.
 //
-
 fun verifySealedHierarchy(value: S) {
   when (value) {
     E.One, E.Two, E.Three -> println("Is a member of E")
@@ -524,15 +590,14 @@ fun verifySealedHierarchy(value: S) {
   }
 }
 
-
+//
+//
 //
 //
 //    - The bound expression is an `enum class`, and that enum
 //      has all of its values checked via constant expressions.
 //
 //
-
-
 fun isItA(value: SimpleEnum) {
   when (value) {
     SimpleEnum.A -> println("Selected A")
@@ -542,14 +607,15 @@ fun isItA(value: SimpleEnum) {
 
 //
 //
-//      - The bound expression is of a nullable type T?:
-//        - One of the cases above is met for its nun-nullable
-//          counterpart, T.
-//        - Includes another condition which checks the bound
-//          value for equality with null.
 //
 //
-
+//    - The bound expression is of a nullable type T?:
+//      - One of the cases above is met for its nun-nullable
+//        counterpart, T.
+//      - Includes another condition which checks the bound
+//        value for equality with null.
+//
+//
 fun verifyNullable(value: S?) {
   when (value) {
     is S -> println("Is a S")
